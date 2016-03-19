@@ -24,7 +24,7 @@ location / {
 }
 location = /index.php {
     expires off;
-    add_header X-Xss-Protection             "1; mode=block"
+    add_header X-Xss-Protection             "1; mode=block";
 
     # "php" is upstream, see /opt/docker/etc/nginx/php.conf
     fastcgi_pass                            php;
@@ -52,7 +52,7 @@ location /media {
 }
 # there is no way to call get.php directly
 location @mediaget {
-    add_header X-Xss-Protection             "1; mode=block"
+    add_header X-Xss-Protection             "1; mode=block";
     fastcgi_pass                            php;
     include                                 fastcgi_params;
     fastcgi_param SCRIPT_FILENAME           $document_root/get.php;
