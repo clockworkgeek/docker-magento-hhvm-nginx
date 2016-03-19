@@ -5,4 +5,4 @@ MAINTAINER daniel@clockworkgeek.com
 COPY etc/nginx /etc/nginx
 
 # Enable cron and mail, because cron uses mail
-RUN sed -i 's/autostart = false/autostart = true/' /opt/docker/etc/supervisor.d/{cron,postfix}.conf
+RUN ["sed", "-i", "s/autostart = false/autostart = true/", "/opt/docker/etc/supervisor.d/cron.conf", "/opt/docker/etc/supervisor.d/postfix.conf"]
