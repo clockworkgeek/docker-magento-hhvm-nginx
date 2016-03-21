@@ -46,7 +46,7 @@ location = /index.php {
 # avoid regex where possible
 ##
 
-location /media {
+location ^~ /media/ {
     # sometimes files are retrieved from database with get.php
     try_files $uri @mediaget;
 }
@@ -58,10 +58,10 @@ location @mediaget {
     fastcgi_param SCRIPT_FILENAME           $document_root/get.php;
 }
 
-location /skin {
+location ^~ /skin/ {
     # allowed with defaults
 }
-location /js {
+location ^~ /js/ {
     # allowed with defaults
 }
 
@@ -74,8 +74,8 @@ location = /favicon.ico {
 
 # specific exclusions, still no regex
 location = /media/.htaccess                 { return 404; }
-location = /media/customer                  { return 404; }
-location = /media/downloadable              { return 404; }
+location ^~ /media/customer/                { return 404; }
+location ^~ /media/downloadable/            { return 404; }
 
 ##
 # Error handling
@@ -99,7 +99,7 @@ location = /errors/503.php {
 
 # empty blocks allow serving without modification
 # ideals for gzip and mime-type are already loaded
-location /errors/default/css                { }
-location /errors/default/images             { }
-location /errors/enterprise/css             { }
-location /errors/enterprise/images          { }
+location ^~ /errors/default/css/            { }
+location ^~ /errors/default/images/         { }
+location ^~ /errors/enterprise/css/         { }
+location ^~ /errors/enterprise/images/      { }
